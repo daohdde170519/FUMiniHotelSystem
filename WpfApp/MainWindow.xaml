@@ -1,0 +1,65 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="800" Width="900">
+    <DockPanel>
+        <!-- Sidebar -->
+        <StackPanel DockPanel.Dock="Left" Width="200" Background="#2D2D2D">
+            <Button Click="btnManageCustomerInfo_Click" Background="Violet">
+                <TextBlock Text="QL Tài khoản" Foreground="White" Padding="10"/>
+            </Button>
+            <Button Click="btnManageRoomInfo_Click" Background="Violet">
+                <TextBlock Text="QL Phòng" Foreground="White" Padding="10"/>
+            </Button>
+            <Button Click="btnCreateReport_Click" Background="Violet">
+                <TextBlock Text="Tạo Báo Cáo" Foreground="White" Padding="10"/>
+            </Button>
+            <Button Click="btnCreateBookingReservation_Click" Background="Violet">
+                <TextBlock Text="Tạo Booking Reservation" Foreground="White" Padding="10"/>
+            </Button>
+            
+        </StackPanel>
+
+        <!-- Main Content -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Search Bar -->
+            <DockPanel Grid.Row="0" Margin="0,10,0,10">
+                <Label x:Name="labelsearch" Content="Search" FontSize="20" HorizontalAlignment="Left" Width="100" Margin="10,0,0,0"/>
+                <TextBox x:Name="txtSearch" Width="200" Height="30" Margin="10,0,0,0" VerticalAlignment="Center" TextChanged="txtSearch_TextChanged"/>
+            </DockPanel>
+
+            <!-- Data Grid -->
+            <DataGrid x:Name="dgData" Grid.Row="1" Margin="10" SelectionChanged="dgData_SelectionChanged"
+                      AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Customer ID" Binding="{Binding CustomerId}"/>
+                    <DataGridTextColumn Header="Full Name" Binding="{Binding CustomerFullName}"/>
+                    <DataGridTextColumn Header="Telephone" Binding="{Binding Telephone}"/>
+                    <DataGridTextColumn Header="Email Address" Binding="{Binding EmailAddress}"/>
+                    <DataGridTextColumn Header="Birthday" Binding="{Binding CustomerBirthday, StringFormat=d}"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding CustomerStatus}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Buttons at the Bottom -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,10">
+                <Button x:Name="btnCreate" Content="Create" Width="150" Height="50" Background="#FF0099FF" BorderBrush="White" Foreground="White" Margin="10,0,10,0" Click="btnCreate_Click"/>
+                <Button x:Name="btnUpdate" Content="Update" Width="150" Height="50" Background="#FF1B7140" Foreground="White" Margin="10,0,10,0" Click="btnUpdate_Click"/>
+                <Button x:Name="btnDelete" Content="Delete" Width="150" Height="50" Background="#FFA2AA3D" Foreground="White" Margin="10,0,10,0" Click="btnDelete_Click"/>
+                <Button x:Name="btnClose" Content="Close" Width="150" Height="50" Background="#FFEF8F18" Foreground="White" Click="btnClose_Click"/>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>
